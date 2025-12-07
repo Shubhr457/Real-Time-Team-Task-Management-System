@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: task-management-backend
+    env: node
+    region: oregon # or your preferred region
+    plan: free # or starter
+    buildCommand: npm install && npm run build
+    startCommand: npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_OPTIONS
+        value: --max-old-space-size=512
+      - key: HOST
+        value: 0.0.0.0
+    # Build settings to prevent memory issues
+    autoDeploy: true
+    healthCheckPath: /health
+
